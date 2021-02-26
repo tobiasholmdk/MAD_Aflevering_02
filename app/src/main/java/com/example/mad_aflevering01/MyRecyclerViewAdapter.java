@@ -7,25 +7,23 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.List;
+
 public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAdapter.MyViewHolder> {
 
     Context context;
-    String sArr1[], sArr2[],sArr3[], sArr4[];
-    int imagesArr[];
+    List<WeatherModel> weatherDataList;
+    int[] imagesArr;
 
 
-    public MyRecyclerViewAdapter(Context con, String s1[],String s2[],String s3[],String s4[],int images [] )
+    public MyRecyclerViewAdapter(Context con, List<WeatherModel> dataset, int[] images)
     {
         context = con;
-        sArr1 = s1;
-        sArr2 = s2;
-        sArr3 = s3;
-        sArr4 = s4;
+        weatherDataList = dataset;
         imagesArr = images;
     }
 
@@ -40,19 +38,24 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        holder.city.setText(sArr1[position]);
-        holder.temp.setText(String.format("%s C", sArr2[position]));
-        holder.weather.setText(sArr3[position]);
+        holder.city.setText(weatherDataList.get(position).getCity());
+        holder.temp.setText(String.format("%s C", weatherDataList.get(position).getTemp()));
+        holder.weather.setText(weatherDataList.get(position).getWeather());
         holder.flag.setImageResource(imagesArr[position]);
+
+
+
         holder.mainLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, Activity2.class);
-                intent.putExtra("sArr1", sArr1[position]);
-                intent.putExtra("sArr2", sArr2[position]);
-                intent.putExtra("sArr3", sArr3[position]);
-                intent.putExtra("sArr4", sArr4[position]);
+                Intent intent = new Intent(context, DetailsActivity.class);
+                intent.putExtra("City", weatherDataList.get(position).getCity());
+                intent.putExtra("Temp", weatherDataList.get(position).getTemp());
+                intent.putExtra("Weather", weatherDataList.get(position).getWeather());
+                intent.putExtra("Humidity", weatherDataList.get(position).getHumidity());
                 intent.putExtra("imagesArr", imagesArr[position]);
+                intent.putExtra("Rating",weatherDataList.get(position).getRating());
+                intent.putExtra("Note",weatherDataList.get(position).getNote());
                 context.startActivity(intent);
             }
         });
@@ -60,10 +63,10 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
 
     @Override
     public int getItemCount() {
-        return sArr1.length;
+        return weatherDataList.size();
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
+    public static class MyViewHolder extends RecyclerView.ViewHolder {
 
         TextView city, temp, weather;
         ImageView flag;

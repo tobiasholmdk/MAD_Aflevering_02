@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activity2">
+    tools:context=".DetailsActivity">
 
     <Button
-        android:id="@+id/exit2"
+        android:id="@+id/edit"
         android:layout_width="100dp"
         android:layout_height="75dp"
         android:layout_marginEnd="50dp"
-        android:text="Exit"
+        android:text="Edit"
         app:layout_constraintBottom_toBottomOf="@+id/backbutton2"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -107,7 +107,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
-        android:text="User Rating :"
+        android:text="User Rating :  X.X"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/weather_2"
         app:layout_constraintTop_toBottomOf="@+id/weather_2" />

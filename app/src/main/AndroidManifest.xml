@@ -9,11 +9,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MAD_Aflevering01">
-        <activity android:name=".EditActivity"></activity>
+        <activity android:name=".EditActivity"
+            android:label="Edit"
+            />
         <activity
-            android:name=".Activity2"
-            android:label="detaljer"
-            android:parentActivityName=".MainActivity" />
+            android:name=".DetailsActivity"
+            android:label="Details"
+            />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
