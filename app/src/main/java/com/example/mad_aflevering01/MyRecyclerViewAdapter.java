@@ -42,24 +42,27 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
         holder.temp.setText(String.format("%s C", weatherDataList.get(position).getTemp()));
         holder.weather.setText(weatherDataList.get(position).getWeather());
         holder.flag.setImageResource(imagesArr[position]);
+        holder.rating.setText(String.format("%s", weatherDataList.get(position).getRating()));
 
 
 
-        holder.mainLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(context, DetailsActivity.class);
-                intent.putExtra("City", weatherDataList.get(position).getCity());
-                intent.putExtra("Temp", weatherDataList.get(position).getTemp());
-                intent.putExtra("Weather", weatherDataList.get(position).getWeather());
-                intent.putExtra("Humidity", weatherDataList.get(position).getHumidity());
-                intent.putExtra("imagesArr", imagesArr[position]);
-                intent.putExtra("Rating",weatherDataList.get(position).getRating());
-                intent.putExtra("Note",weatherDataList.get(position).getNote());
-                context.startActivity(intent);
-            }
+        holder.mainLayout.setOnClickListener(v -> {
+            Intent intent = new Intent(context, DetailsActivity.class);
+            intent.putExtra("City", weatherDataList.get(position).getCity());
+            intent.putExtra("Temp", weatherDataList.get(position).getTemp());
+            intent.putExtra("Weather", weatherDataList.get(position).getWeather());
+            intent.putExtra("Humidity", weatherDataList.get(position).getHumidity());
+            intent.putExtra("imagesArr", imagesArr[position]);
+            intent.putExtra("Rating",weatherDataList.get(position).getRating());
+            intent.putExtra("Note",weatherDataList.get(position).getNote());
+            intent.putExtra("Position",position);
+
+            ((MainActivity) context).startActivityForResult(intent,420);
         });
+
     }
+
+
 
     @Override
     public int getItemCount() {
@@ -68,7 +71,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
 
-        TextView city, temp, weather;
+        TextView city, temp, weather, rating;
         ImageView flag;
         ConstraintLayout mainLayout;
 
@@ -79,5 +82,6 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
             weather = itemView.findViewById(R.id.weather);
             flag = itemView.findViewById(R.id.flag);
             mainLayout = itemView.findViewById(R.id.mainLayout);
+            rating = itemView.findViewById(R.id.ratingMain);
         }
     }}

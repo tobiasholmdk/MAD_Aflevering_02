@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.Toast;
@@ -22,8 +23,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     MyRecyclerViewAdapter adapter;
-    String s1[], s2[],s3[],s4[];
-    int images[] = {R.drawable.dk, R.drawable.fi, R.drawable.us, R.drawable.au, R.drawable.na, R.drawable.sg, R.drawable.ru, R.drawable.ae, R.drawable.fo, R.drawable.us, R.drawable.fj, R.drawable.jp};
+    int[] images = {R.drawable.dk, R.drawable.fi, R.drawable.us, R.drawable.au, R.drawable.na, R.drawable.sg, R.drawable.ru, R.drawable.ae, R.drawable.fo, R.drawable.us, R.drawable.fj, R.drawable.jp};
     RecyclerView recyclerView;
     List<WeatherModel> weatherDataList;
 
@@ -32,23 +32,38 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        s1 = getResources().getStringArray(R.array.City);
-        s2 = getResources().getStringArray(R.array.Temp);
-        s3 = getResources().getStringArray(R.array.Weather);
-        s4 = getResources().getStringArray(R.array.Humidity);
-
         GetWeatherData();
-
-
-
-        Toast.makeText(this,weatherDataList.get(0).getCity(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(this,"OnCreate", Toast.LENGTH_SHORT).show();
         recyclerView = findViewById(R.id.view);
-        adapter = new MyRecyclerViewAdapter(this, weatherDataList, images);
 
+        adapter = new MyRecyclerViewAdapter(this, weatherDataList, images);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
+
         Button exitBtn = (Button) findViewById(R.id.button);
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 420) {
+            if (resultCode == RESULT_OK)
+            {
+
+                int position = data.getIntExtra("Position",0);
+
+                String newNote = data.getStringExtra("Note");
+
+                weatherDataList.get(position).setRating(data.getDoubleExtra("Rating",1));
+                weatherDataList.get(position).setNote(newNote);
+
+                adapter = new MyRecyclerViewAdapter(this, weatherDataList, images);
+                recyclerView.setAdapter(adapter);
+                recyclerView.setLayoutManager(new LinearLayoutManager(this));
+            }
+        }
     }
 
     private void GetWeatherData() {

@@ -11,7 +11,7 @@ public class WeatherModel {
 
     public WeatherModel() {
 
-        setRating(5.5);
+        setRating(0.0);
         Note = "These are user notes";
     }
 

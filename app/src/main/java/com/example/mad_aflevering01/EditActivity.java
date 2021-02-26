@@ -42,33 +42,25 @@ public class EditActivity extends AppCompatActivity {
         getData();
         setData();
 
-        Ok.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent resultIntent = getIntent();
-                notesInput = note.getText().toString();
+        Ok.setOnClickListener(v -> {
+            Intent resultIntent = getIntent();
+            notesInput = note.getText().toString();
 
-                resultIntent.putExtra("Note",notesInput);
-                resultIntent.putExtra("Rating",Double.valueOf(rating.getProgress()));
-
-                setResult(RESULT_OK, resultIntent);
-                finish();
-            }
+            resultIntent.putExtra("Note",notesInput);
+            resultIntent.putExtra("Rating",Double.valueOf(rating.getProgress()));
+            setResult(RESULT_OK, resultIntent);
+            finish();
         });
 
-        Cancel.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-        {
+        Cancel.setOnClickListener(v -> {
             setResult(RESULT_CANCELED);
             finish();
-        }});
+        });
 
         rating.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                ratingProgress.setText(String.format("User Rating: %s", progress));
+                ratingProgress.setText(String.format("My Rating:     %s", Double.parseDouble(String.valueOf(progress))));
             }
 
             @Override
@@ -103,5 +95,8 @@ public class EditActivity extends AppCompatActivity {
     private void setData() {
         city.setText(cityInput);
         iV.setImageResource(image);
+        ratingProgress.setText(String.format("My Rating:     %s", ratingInput));
+        note.setText(notesInput);
+        rating.setProgress((int)ratingInput);
     }
 }

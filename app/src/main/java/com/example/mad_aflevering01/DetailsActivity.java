@@ -15,7 +15,8 @@ public class DetailsActivity extends AppCompatActivity {
     TextView city, temp, weather, humidity, ratings, notes;
     String cityInput, weatherInput, notesInput;
     double tempInput, humidityInput, ratingInput;
-    int image;
+    int image, position;
+    Button EditBtn, BackBtn;
 
 
     @Override
@@ -30,12 +31,14 @@ public class DetailsActivity extends AppCompatActivity {
         humidity = findViewById(R.id.Humidity);
         ratings = findViewById(R.id.Userrating);
         notes = findViewById(R.id.notes);
+        EditBtn = findViewById(R.id.edit);
+        BackBtn = findViewById(R.id.backbutton2);
 
         if (savedInstanceState != null) {
-            cityInput = savedInstanceState.getString("sArr1");
-            tempInput = savedInstanceState.getDouble("sArr2");
-            weatherInput = savedInstanceState.getString("sArr3");
-            humidityInput = savedInstanceState.getDouble("sArr4");
+            cityInput = savedInstanceState.getString("City");
+            tempInput = savedInstanceState.getDouble("Temp");
+            weatherInput = savedInstanceState.getString("Weather");
+            humidityInput = savedInstanceState.getDouble("Humidity");
             image = savedInstanceState.getInt("imagesArr");
             ratingInput = savedInstanceState.getDouble("Rating",1);
             notesInput = savedInstanceState.getString("Note");
@@ -45,7 +48,16 @@ public class DetailsActivity extends AppCompatActivity {
         setData();
 
 
-        Button EditBtn = (Button) findViewById(R.id.edit);
+        BackBtn.setOnClickListener(v -> {
+
+            Intent resultIntent = getIntent();
+            resultIntent.putExtra("Position", position);
+            resultIntent.putExtra("Note", notesInput);
+            resultIntent.putExtra("Rating", ratingInput);
+            setResult(RESULT_OK, resultIntent );
+            finish();
+        });
+
 
         EditBtn.setOnClickListener(v -> {
             Intent intent = new Intent(DetailsActivity.this, EditActivity.class);
@@ -70,8 +82,11 @@ public class DetailsActivity extends AppCompatActivity {
         savedInstanceState.putString("Weather", weatherInput);
         savedInstanceState.putDouble("Humidity", humidityInput);
         savedInstanceState.putInt("imagesArr", image);
+        savedInstanceState.putInt("Position", position);
         super.onSaveInstanceState(savedInstanceState);
     }
+
+
 
     private void getData() {
         if(getIntent().hasExtra("City") && getIntent().hasExtra("Temp") && getIntent().hasExtra("Weather") && getIntent().hasExtra("Humidity") && getIntent().hasExtra("imagesArr"))
@@ -82,6 +97,7 @@ public class DetailsActivity extends AppCompatActivity {
             humidityInput = getIntent().getDoubleExtra("Humidity", 1);
             image = getIntent().getIntExtra("imagesArr",1);
             ratingInput = getIntent().getDoubleExtra("Rating",1);
+            position = getIntent().getIntExtra("Position",1);
             notesInput = getIntent().getStringExtra("Note");
         }
         else
