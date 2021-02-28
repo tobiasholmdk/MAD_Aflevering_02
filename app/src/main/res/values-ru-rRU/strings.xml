@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Погодное приложение</string>
+    <string name="Exit">Выход</string>
+    <string name="Back">Назад</string>
+    <string name="Ok">OK</string>
+    <string name="Rating">Мой рейтинг:</string>
+    <string name="User">Рейтинг пользователей:</string>
+    <string name="Notes">Примечания пользователя:</string>
+    <string name="Edit">редактировать</string>
+    <string name="Cancel">Отмена</string>
+    <string name="myNotes">Мои заметки:</string>
+    <string name="Temp" translatable="false">влажность:</string>
+    <string name="City">Город:</string>
+    <string name="Weather">Погода:</string>
+    <string name="hum">Влажность:</string>
+    <string name="details">Подробности</string>
+</resources>

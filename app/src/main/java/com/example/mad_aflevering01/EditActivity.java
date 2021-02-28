@@ -60,7 +60,7 @@ public class EditActivity extends AppCompatActivity {
         rating.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                ratingProgress.setText(String.format("My Rating:     %s", Double.parseDouble(String.valueOf(progress))));
+                ratingProgress.setText(String.format("%s     %s", getString(R.string.Rating), Double.parseDouble(String.valueOf(progress))));
             }
 
             @Override
@@ -78,11 +78,11 @@ public class EditActivity extends AppCompatActivity {
     }
 
     private void getData() {
-        if(getIntent().hasExtra("City") && getIntent().hasExtra("Temp") && getIntent().hasExtra("Weather") && getIntent().hasExtra("Humidity") && getIntent().hasExtra("imagesArr"))
+        if(getIntent().hasExtra("City") && getIntent().hasExtra("Temp") && getIntent().hasExtra("Weather") && getIntent().hasExtra("Humidity") && getIntent().hasExtra("Image"))
         {
             cityInput = getIntent().getStringExtra("City");
             tempInput = getIntent().getDoubleExtra("Temp",1);
-            image = getIntent().getIntExtra("imagesArr",1);
+            image = getIntent().getIntExtra("Image",1);
             ratingInput = getIntent().getDoubleExtra("Rating",1);
             notesInput = getIntent().getStringExtra("Note");
         }
@@ -95,7 +95,7 @@ public class EditActivity extends AppCompatActivity {
     private void setData() {
         city.setText(cityInput);
         iV.setImageResource(image);
-        ratingProgress.setText(String.format("My Rating:     %s", ratingInput));
+        ratingProgress.setText(String.format("%s     %s",getString(R.string.Rating), ratingInput));
         note.setText(notesInput);
         rating.setProgress((int)ratingInput);
     }

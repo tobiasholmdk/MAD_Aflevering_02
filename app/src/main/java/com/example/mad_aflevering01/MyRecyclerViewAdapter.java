@@ -52,7 +52,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
             intent.putExtra("Temp", weatherDataList.get(position).getTemp());
             intent.putExtra("Weather", weatherDataList.get(position).getWeather());
             intent.putExtra("Humidity", weatherDataList.get(position).getHumidity());
-            intent.putExtra("imagesArr", imagesArr[position]);
+            intent.putExtra("Image", imagesArr[position]);
             intent.putExtra("Rating",weatherDataList.get(position).getRating());
             intent.putExtra("Note",weatherDataList.get(position).getNote());
             intent.putExtra("Position",position);

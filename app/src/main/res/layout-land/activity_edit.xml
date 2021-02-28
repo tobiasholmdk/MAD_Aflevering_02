@@ -10,7 +10,7 @@
         android:id="@+id/cancel"
         android:layout_width="100dp"
         android:layout_height="75dp"
-        android:text="Cancel"
+        android:text="@string/Cancel"
         app:layout_constraintBottom_toBottomOf="@+id/Ok"
         app:layout_constraintStart_toStartOf="@+id/seekBar2" />
 
@@ -20,7 +20,7 @@
         android:layout_height="75dp"
         android:layout_marginEnd="50dp"
         android:layout_marginBottom="10dp"
-        android:text="OK"
+        android:text="@string/Ok"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -29,7 +29,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="200dp"
-        android:text="My Notes:"
+        android:text="@string/myNotes"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/RatingEdit"
@@ -61,7 +61,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginTop="20dp"
-        android:text="City Name"
+        android:text="@string/City"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/imageView_edit"
@@ -72,7 +72,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="My Rating:       X.X"
+        android:text="@string/Rating"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/imageView_edit"

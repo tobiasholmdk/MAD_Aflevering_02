@@ -11,7 +11,7 @@
         android:layout_width="100dp"
         android:layout_height="75dp"
         android:layout_marginEnd="50dp"
-        android:text="Edit"
+        android:text="@string/Edit"
         app:layout_constraintBottom_toBottomOf="@+id/backbutton2"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -21,7 +21,7 @@
         android:layout_height="75dp"
         android:layout_marginStart="50dp"
         android:layout_marginBottom="10dp"
-        android:text="Back"
+        android:text="@string/Back"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -39,7 +39,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
-        android:text="User Notes :"
+        android:text="@string/Notes"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/Userrating"
         app:layout_constraintTop_toBottomOf="@+id/Userrating" />
@@ -60,7 +60,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="230dp"
         android:layout_marginTop="15dp"
-        android:text="Aarhus"
+        android:text="@string/City"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/imageView"
@@ -71,7 +71,7 @@
         android:layout_width="140dp"
         android:layout_height="79dp"
         android:layout_marginTop="10dp"
-        android:text="Weather"
+        android:text="@string/Weather"
         app:layout_constraintStart_toStartOf="@+id/Humidity"
         app:layout_constraintTop_toBottomOf="@+id/Humidity" />
 
@@ -80,7 +80,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:text="Humidity"
+        android:text="@string/hum"
         app:layout_constraintStart_toStartOf="@+id/temp2"
         app:layout_constraintTop_toBottomOf="@+id/temp2" />
 
@@ -90,7 +90,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="60dp"
         android:layout_marginTop="15dp"
-        android:text="Temp"
+        android:text="@string/Temp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
@@ -99,7 +99,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="User Rating :  X.X"
+        android:text="@string/User"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/city_2"
         app:layout_constraintTop_toBottomOf="@+id/city_2" />

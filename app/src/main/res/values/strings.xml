@@ -1,78 +1,17 @@
 <resources>
-    <string name="app_name">MAD_Aflevering01</string>
-
-    <string-array name="City">
-        <item>Aarhus</item>
-        <item>Helsinki</item>
-        <item>New York</item>
-        <item>Melbourne</item>
-        <item>Windhoek</item>
-        <item>Singapore</item>
-        <item>Novosibirsk</item>
-        <item>Dubai</item>
-        <item>Thorshavn</item>
-        <item>San Francisco</item>
-        <item>Suva</item>
-        <item>Tokyo</item>
-    </string-array>
-
-    <string-array name="Country">
-        <item>DK</item>
-        <item>FI</item>
-        <item>US</item>
-        <item>AU</item>
-        <item>NA</item>
-        <item>SG</item>
-        <item>RU</item>
-        <item>AE</item>
-        <item>FO</item>
-        <item>US</item>
-        <item>FJ</item>
-        <item>JP</item>
-    </string-array>
-
-    <string-array name="Temp">
-        <item>2</item>
-        <item>-17</item>
-        <item>-1</item>
-        <item>34</item>
-        <item>28</item>
-        <item>27</item>
-        <item>-17</item>
-        <item>23</item>
-        <item>8</item>
-        <item>16</item>
-        <item>26</item>
-        <item>7</item>
-    </string-array>
-
-    <string-array name="Weather">
-        <item>Snow. Light breeze.</item>
-        <item>Light snow. Gentle Breeze.</item>
-        <item>Rain and snow. Gentle Breeze.</item>
-        <item>Light rain. Gentle Breeze</item>
-        <item>Clear sky. Light breeze.</item>
-        <item>Overcast clouds. Moderate breeze.</item>
-        <item>Snow. Light breeze.</item>
-        <item>Scattered clouds. Gentle Breeze.</item>
-        <item>Light rain. Fresh Breeze.</item>
-        <item>Clear sky. Light breeze.</item>
-        <item>Moderate rain. Moderate breeze.</item>
-        <item>Clear sky. Gentle Breeze.</item>
-    </string-array>
-
-    <string-array name="Humidity">
-        <item>100</item>
-        <item>97</item>
-        <item>31</item>
-        <item>27</item>
-        <item>25</item>
-        <item>66</item>
-        <item>96</item>
-        <item>54</item>
-        <item>83</item>
-        <item>39</item>
-        <item>85</item>
-        <item>46</item>
-    </string-array>
+    <string name="app_name">Weather Application</string>
+    <string name="Exit"> Exit</string>
+    <string name="Back" > Back </string>
+    <string name= "Ok" > OK </string>
+    <string name="Rating" > My Rating: </string>
+    <string name="User" > User Rating: </string>
+    <string name="Notes"  > User Notes: </string>
+    <string name="Weather"> Weather </string>
+    <string name="Temp"> Temp </string>
+    <string name="City"> City </string>
+    <string name="hum"> Humidity </string>
+    <string name="myNotes"  > My Notes: </string>
+    <string name="Edit" > Edit  </string>
+    <string name="Cancel">Cancel</string>
+    <string name="details">Details</string>
 </resources>

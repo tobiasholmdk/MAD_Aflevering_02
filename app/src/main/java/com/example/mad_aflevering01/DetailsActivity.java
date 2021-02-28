@@ -39,7 +39,7 @@ public class DetailsActivity extends AppCompatActivity {
             tempInput = savedInstanceState.getDouble("Temp");
             weatherInput = savedInstanceState.getString("Weather");
             humidityInput = savedInstanceState.getDouble("Humidity");
-            image = savedInstanceState.getInt("imagesArr");
+            image = savedInstanceState.getInt("Image");
             ratingInput = savedInstanceState.getDouble("Rating",1);
             notesInput = savedInstanceState.getString("Note");
         } else {
@@ -65,7 +65,7 @@ public class DetailsActivity extends AppCompatActivity {
             intent.putExtra("Temp", tempInput);
             intent.putExtra("Weather", weatherInput);
             intent.putExtra("Humidity",humidityInput);
-            intent.putExtra("imagesArr", image);
+            intent.putExtra("Image", image);
             intent.putExtra("Rating",ratingInput);
             intent.putExtra("Note",notesInput);
             DetailsActivity.this.startActivityForResult(intent,69);
@@ -81,7 +81,7 @@ public class DetailsActivity extends AppCompatActivity {
         savedInstanceState.putDouble("Rating", ratingInput);
         savedInstanceState.putString("Weather", weatherInput);
         savedInstanceState.putDouble("Humidity", humidityInput);
-        savedInstanceState.putInt("imagesArr", image);
+        savedInstanceState.putInt("Image", image);
         savedInstanceState.putInt("Position", position);
         super.onSaveInstanceState(savedInstanceState);
     }
@@ -89,13 +89,13 @@ public class DetailsActivity extends AppCompatActivity {
 
 
     private void getData() {
-        if(getIntent().hasExtra("City") && getIntent().hasExtra("Temp") && getIntent().hasExtra("Weather") && getIntent().hasExtra("Humidity") && getIntent().hasExtra("imagesArr"))
+        if(getIntent().hasExtra("City") && getIntent().hasExtra("Temp") && getIntent().hasExtra("Weather") && getIntent().hasExtra("Humidity") && getIntent().hasExtra("Image"))
         {
             cityInput = getIntent().getStringExtra("City");
             tempInput = getIntent().getDoubleExtra("Temp",1);
             weatherInput = getIntent().getStringExtra("Weather");
             humidityInput = getIntent().getDoubleExtra("Humidity", 1);
-            image = getIntent().getIntExtra("imagesArr",1);
+            image = getIntent().getIntExtra("Image",1);
             ratingInput = getIntent().getDoubleExtra("Rating",1);
             position = getIntent().getIntExtra("Position",1);
             notesInput = getIntent().getStringExtra("Note");
@@ -112,7 +112,6 @@ public class DetailsActivity extends AppCompatActivity {
         if (requestCode == 69) {
             if (resultCode == RESULT_OK)
             {
-                Toast.makeText(this,"Inside OnActivityRes", Toast.LENGTH_SHORT).show();
                 ratingInput = data.getDoubleExtra("Rating",1);
                 notesInput = data.getStringExtra("Note");
                 notes.setText(notesInput);
@@ -123,11 +122,11 @@ public class DetailsActivity extends AppCompatActivity {
 
     private void setData() {
         city.setText(cityInput);
-        temp.setText(String.format("Temp:  %sC", tempInput));
-        weather.setText(String.format("Weather: %s", weatherInput));
-        humidity.setText(String.format("Humidity: %s%%", humidityInput));
+        temp.setText(String.format("%s  %sC",getString(R.string.Temp), tempInput));
+        weather.setText(String.format("%s: %s", getString(R.string.Weather), weatherInput));
+        humidity.setText(String.format("%s: %s%%", getString(R.string.hum),humidityInput));
         iV.setImageResource(image);
         notes.setText(notesInput);
-        ratings.setText(String.format("User Rating:  %s", ratingInput));
+        ratings.setText(String.format("%s  %s",getString(R.string.User), ratingInput));
     }
 }

@@ -10,7 +10,6 @@ public class WeatherModel {
     private String Note;
 
     public WeatherModel() {
-
         setRating(0.0);
         Note = "These are user notes";
     }

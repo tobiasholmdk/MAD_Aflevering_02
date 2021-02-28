@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -33,7 +34,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         GetWeatherData();
-        Toast.makeText(this,"OnCreate", Toast.LENGTH_SHORT).show();
         recyclerView = findViewById(R.id.view);
 
         adapter = new MyRecyclerViewAdapter(this, weatherDataList, images);
@@ -42,6 +42,14 @@ public class MainActivity extends AppCompatActivity {
 
 
         Button exitBtn = (Button) findViewById(R.id.button);
+        exitBtn.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                finish();
+                System.exit(0);
+            }
+        });
     }
 
 
@@ -66,6 +74,8 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+
+    // Functionality for getting info from CSV file, inspiration from : https://www.youtube.com/watch?v=i-TqNzUryn8
     private void GetWeatherData() {
         InputStream is = getResources().openRawResource(R.raw.data);
         BufferedReader reader = new BufferedReader(
@@ -90,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
-
+    // Functionality for getting info from CSV file, inspiration from : https://www.youtube.com/watch?v=i-TqNzUryn8
     private WeatherModel WeatherModelMapper(String[] tokens) {
         WeatherModel data = new WeatherModel();
 

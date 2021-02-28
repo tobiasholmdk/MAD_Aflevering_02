@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Weather Application</string>
+    <string name="Exit">" Exit"</string>
+    <string name="Back">" Back "</string>
+    <string name="Ok">" OK "</string>
+    <string name="Rating">" My Rating: "</string>
+    <string name="User">" User Rating: "</string>
+    <string name="Notes">" User Notes: "</string>
+    <string name="Edit">" Edit  "</string>
+    <string name="Cancel">Cancel</string>
+    <string name="myNotes">" My Notes: "</string>
+    <string name="Temp" translatable="false">Temperature:</string>
+    <string name="City">" City:"</string>
+    <string name="Weather">" Weather:"</string>
+    <string name="hum">" Humidity:"</string>
+    <string name="details">Details</string>
+</resources>
