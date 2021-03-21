@@ -11,12 +11,14 @@ import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAdapter.MyViewHolder> {
 
+
     Context context;
-    List<WeatherModel> weatherDataList;
+    List<WeatherModel> weatherDataList = new ArrayList<>();
     int[] imagesArr;
 
 
@@ -63,6 +65,10 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
     }
 
 
+    public void setWeathermodels(List<WeatherModel> weathermodels){
+        this.weatherDataList = weathermodels;
+        notifyDataSetChanged();
+    }
 
     @Override
     public int getItemCount() {

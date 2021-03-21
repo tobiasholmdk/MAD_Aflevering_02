@@ -2,6 +2,8 @@ package com.example.mad_aflevering01;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -27,18 +29,28 @@ public class MainActivity extends AppCompatActivity {
     int[] images = {R.drawable.dk, R.drawable.fi, R.drawable.us, R.drawable.au, R.drawable.na, R.drawable.sg, R.drawable.ru, R.drawable.ae, R.drawable.fo, R.drawable.us, R.drawable.fj, R.drawable.jp};
     RecyclerView recyclerView;
     List<WeatherModel> weatherDataList;
+    private ListViewModel listViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        GetWeatherData();
         recyclerView = findViewById(R.id.view);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         adapter = new MyRecyclerViewAdapter(this, weatherDataList, images);
         recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+
+
+        listViewModel = new ViewModelProvider(this).get(ListViewModel.class);
+        listViewModel.getAllWeatherData().observe(this, new Observer<List<WeatherModel>>() {
+            @Override
+            public void onChanged(List<WeatherModel> weatherModels) {
+
+            }
+        });
 
 
         Button exitBtn = (Button) findViewById(R.id.button);
