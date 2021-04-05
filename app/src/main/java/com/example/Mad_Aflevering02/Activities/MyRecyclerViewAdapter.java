@@ -46,30 +46,31 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
 
+        // Format temperature to have 2 decimals
         DecimalFormat numberFormat = new DecimalFormat("#.00");
         String tempFormat = (numberFormat.format(weatherDataList.get(position).getTemp()));
 
+        // Set all data using model
         holder.city.setText(weatherDataList.get(position).getCity());
         holder.temp.setText(String.format("%s C", tempFormat));
         holder.weather.setText(weatherDataList.get(position).getWeather());
         holder.rating.setText(String.format("%s", weatherDataList.get(position).getRating()));
 
+        // Initialize URL, and get flag using URL
         String url ="https://www.countryflags.io/" + weatherDataList.get(position).getCountry() + "/flat/64.png";
         Glide.with(holder.flag.getContext()).load(url).into(holder.flag);
 
-        //holder.flag.setImageResource(imagesArr[position]);
-
+        // Initialize click on a row
         holder.mainLayout.setOnClickListener(v -> {
             Intent intent = new Intent(context, DetailsActivity.class);
             intent.putExtra("Id", weatherDataList.get(position).getId());
-
-
-            ((MainActivity) context).startActivityForResult(intent,420);
+            ((ListActivity) context).startActivityForResult(intent,420);
         });
 
     }
 
 
+    // Set weather model when data changes, is called from observer in activity
     public void setWeathermodels(List<WeatherModel> weathermodels){
         this.weatherDataList = weathermodels;
         notifyDataSetChanged();
@@ -82,6 +83,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
 
+        // Initialize all Textviews and Imageviews
         TextView city, temp, weather, rating;
         ImageView flag;
         ConstraintLayout mainLayout;

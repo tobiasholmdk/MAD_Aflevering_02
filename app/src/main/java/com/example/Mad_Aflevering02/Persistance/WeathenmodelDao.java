@@ -17,9 +17,6 @@ public interface WeathenmodelDao {
     @Update
     void update(WeatherModel model);
 
-    //@Delete
-    //void delete(WeatherModel model);
-
     @Query("DELETE FROM weather_table WHERE id LIKE :Id")
     void delete(int Id);
 

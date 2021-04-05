@@ -4,6 +4,9 @@ import androidx.room.PrimaryKey;
 
 @Entity(tableName = "weather_table")
 public class WeatherModel {
+
+    // Class describing model used for the weather application, model is an entity for db.
+
     @PrimaryKey(autoGenerate = true)
     private int id;
     private String City;

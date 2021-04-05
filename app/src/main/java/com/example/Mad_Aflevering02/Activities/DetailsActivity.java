@@ -31,7 +31,7 @@ public class DetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
 
-
+        // Get id from Intent, and observe model
         getData();
         detailsViewModel = new ViewModelProvider(this).get(DetailsViewModel.class);
         detailsViewModel.getWeatherData(id).observe(this, weatherModelFromDb -> {
@@ -42,7 +42,7 @@ public class DetailsActivity extends AppCompatActivity {
             }
         });
 
-
+        // Find views for Buttons, Textviews, and Imageviews
         iV = findViewById(R.id.imageView);
         city = findViewById(R.id.city_2);
         temp = findViewById(R.id.temp2);
@@ -54,11 +54,13 @@ public class DetailsActivity extends AppCompatActivity {
         BackBtn = findViewById(R.id.backbutton);
         DeleteBtn = findViewById(R.id.deleteButton);
 
+        // Back button initialized
         BackBtn.setOnClickListener(v -> {
             setResult(RESULT_CANCELED);
             finish();
         });
 
+        // Delete button initialized
         DeleteBtn.setOnClickListener(v -> {
             detailsViewModel.delete(id);
             setResult(RESULT_CANCELED);
@@ -66,6 +68,7 @@ public class DetailsActivity extends AppCompatActivity {
             finish();
         });
 
+        // Edit button initialized
         EditBtn.setOnClickListener(v -> {
             Intent intent = new Intent(DetailsActivity.this, EditActivity.class);
             intent.putExtra("Id", id);
@@ -73,7 +76,7 @@ public class DetailsActivity extends AppCompatActivity {
         });
     }
 
-
+    // Get data from intent, in case of assigment2, only Id is sent as intent.
     private void getData() {
         if(getIntent().hasExtra("Id"))
         {
@@ -86,6 +89,7 @@ public class DetailsActivity extends AppCompatActivity {
     }
 
 
+    // Set data for UI widgets using the weather model
     private void setData() {
         DecimalFormat numberFormat = new DecimalFormat("#.00");
         String tempFormat = (numberFormat.format(weatherModel.getTemp()));

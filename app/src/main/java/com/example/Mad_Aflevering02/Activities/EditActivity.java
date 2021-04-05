@@ -38,16 +38,10 @@ public class EditActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit);
-        ratingProgress = findViewById(R.id.RatingEdit);
-        iV = findViewById(R.id.imageView_edit);
-        city = findViewById(R.id.CityEDIT);
-        rating = findViewById(R.id.seekBar2);
-        note = findViewById(R.id.Notes_edit);
-        Ok = findViewById(R.id.Ok);
-        Cancel = findViewById(R.id.cancel);
 
+
+        // Get id from Intent, and observe model
         getData();
-
         editViewModel = new ViewModelProvider(this).get(EditViewModel.class);
         editViewModel.getWeatherData(id).observe(this, weatherModelFromDb -> {
             weatherModel = weatherModelFromDb;
@@ -57,6 +51,16 @@ public class EditActivity extends AppCompatActivity {
             }
         });
 
+        // Find views for Buttons, Textviews, and Imageviews
+        ratingProgress = findViewById(R.id.RatingEdit);
+        iV = findViewById(R.id.imageView_edit);
+        city = findViewById(R.id.CityEDIT);
+        rating = findViewById(R.id.seekBar2);
+        note = findViewById(R.id.Notes_edit);
+        Ok = findViewById(R.id.Ok);
+        Cancel = findViewById(R.id.cancel);
+
+        // Ok button initialized
         Ok.setOnClickListener(v -> {
             Intent resultIntent = getIntent();
             notesInput = note.getText().toString();
@@ -67,11 +71,13 @@ public class EditActivity extends AppCompatActivity {
             finish();
         });
 
+        // Cancel button initialized
         Cancel.setOnClickListener(v -> {
             setResult(RESULT_CANCELED);
             finish();
         });
 
+        // Seekbar initialized
         rating.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
@@ -80,16 +86,15 @@ public class EditActivity extends AppCompatActivity {
 
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
-
             }
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-
             }
         });
     }
 
+    // Get data from intent, in case of assigment2, only Id is sent as intent.
     private void getData() {
         if(getIntent().hasExtra("Id"))
         {
@@ -101,6 +106,7 @@ public class EditActivity extends AppCompatActivity {
         }
     }
 
+    // Set data for UI widgets using the weather model
     private void setData() {
         city.setText(weatherModel.getCity());
         String url ="https://www.countryflags.io/" + weatherModel.getCountry() + "/flat/64.png";

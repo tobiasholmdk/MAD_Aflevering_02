@@ -25,7 +25,7 @@ import java.util.List;
 import com.example.Mad_Aflevering02.Services.WeatherService;
 import com.example.Mad_Aflevering02.ViewModels.ListViewModel;
 
-public class MainActivity extends AppCompatActivity {
+public class ListActivity extends AppCompatActivity {
 
     MyRecyclerViewAdapter adapter;
     int[] images = {R.drawable.dk, R.drawable.fi, R.drawable.us, R.drawable.au, R.drawable.na, R.drawable.sg, R.drawable.ru, R.drawable.ae, R.drawable.fo, R.drawable.us, R.drawable.fj, R.drawable.jp};
@@ -36,38 +36,39 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_list);
+
+        // Find views for Buttons, Textviews, and Imageviews
         searchBar = findViewById(R.id.SeachList);
-
-
+        Button addBtn = findViewById(R.id.Add_listActivity);
+        Button exitBtn = findViewById(R.id.button);
         recyclerView = findViewById(R.id.view);
+
+        // Initialize recycler view and adaptor for recycler view
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-
-
         adapter = new MyRecyclerViewAdapter(this ,images);
         recyclerView.setAdapter(adapter);
 
 
+        // initialize view model, and observe model
         listViewModel = new ViewModelProvider(this).get(ListViewModel.class);
-
         listViewModel.getAllWeatherData().observe(this, weatherModels ->
                 adapter.setWeathermodels(weatherModels)
         );
 
+        // Get weather data via CSV from assignment 1, and use API to store in room db
         GetWeatherData();
-
         weatherDataFromCsv.forEach(model -> listViewModel.addCity(model.getCity()));
 
-        Button exitBtn = findViewById(R.id.button);
+        // Exit button initialized
         exitBtn.setOnClickListener(v -> {
             finish();
             System.exit(0);
         });
         startForegroundService();
-        Button addBtn = findViewById(R.id.Add_listActivity);
+
+        // Add button initialized
         addBtn.setOnClickListener(v -> {
 
             if(searchBar.getText() == null)
@@ -79,14 +80,15 @@ public class MainActivity extends AppCompatActivity {
             {
                 listViewModel.addCity(searchBar.getText().toString());
             }
-
         });
     }
 
+    // Start foreground service, service is inspired from Demo from the corresponding lecture about services in the MAD classes
     private void startForegroundService() {
         Intent WeatherServiceIntent = new Intent(this, WeatherService.class);
         startService(WeatherServiceIntent);
     }
+
 
     // Functionality for getting info from CSV file, inspiration from : https://www.youtube.com/watch?v=i-TqNzUryn8
     private void GetWeatherData() {
